@@ -1,0 +1,30 @@
+name: Local-equivalent validation
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install . ruff==0.14.4
+      - run: ruff check .
+      - run: python -m unittest discover -s tests -v
+      - run: python scripts/verify_full.py
+      - if: failure()
+        run: find output/full/browser -name browser-error.json -exec cat '{}' \;
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: local-validation-output
+          path: output/full/
+          retention-days: 7

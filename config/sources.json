@@ -1,0 +1,14 @@
+[
+  {
+    "url": "http://127.0.0.1:8765/index.html",
+    "name": "Self-owned static acceptance fixture",
+    "automation_allowed": true,
+    "permission_basis": "Repository-owned fixture served only on loopback"
+  },
+  {
+    "url": "http://127.0.0.1:8765/data.json",
+    "name": "Self-owned JSON fixture",
+    "automation_allowed": true,
+    "permission_basis": "Repository-owned fixture served only on loopback"
+  }
+]

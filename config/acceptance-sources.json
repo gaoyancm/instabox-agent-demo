@@ -1,0 +1,109 @@
+[
+  {
+    "url": "http://127.0.0.1:8765/index.html",
+    "name": "Owned HTML",
+    "automation_allowed": true,
+    "permission_basis": "Repository-owned loopback fixture"
+  },
+  {
+    "url": "http://127.0.0.1:8765/etag.json",
+    "name": "Owned conditional JSON and offline extraction",
+    "automation_allowed": true,
+    "permission_basis": "Repository-owned loopback fixture",
+    "extraction": {
+      "mode": "offline_json",
+      "version": "v1",
+      "field_map": {
+        "name": "name",
+        "value": "value"
+      },
+      "schema": {
+        "type": "object",
+        "required": [
+          "name",
+          "value"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "url": "http://127.0.0.1:8765/feed.xml",
+    "name": "Owned RSS",
+    "automation_allowed": true,
+    "permission_basis": "Repository-owned loopback fixture"
+  },
+  {
+    "url": "http://127.0.0.1:8765/rate-limited.json",
+    "name": "Owned Retry-After API",
+    "automation_allowed": true,
+    "permission_basis": "Repository-owned loopback fixture"
+  },
+  {
+    "url": "http://127.0.0.1:8765/changing.json",
+    "name": "Owned changing API",
+    "automation_allowed": true,
+    "permission_basis": "Repository-owned loopback fixture"
+  },
+  {
+    "url": "http://127.0.0.1:8765/browser.html",
+    "name": "Owned dynamic browser",
+    "mode": "browser",
+    "automation_allowed": true,
+    "permission_basis": "Repository-owned loopback fixture",
+    "wait_selector": "#content.loaded",
+    "dom_fields": {
+      "headline": "h1",
+      "value": "#value"
+    }
+  },
+  {
+    "url": "http://127.0.0.1:8765/browser.html?case=search",
+    "name": "Owned browser search",
+    "mode": "browser",
+    "automation_allowed": true,
+    "permission_basis": "Repository-owned loopback fixture",
+    "actions": [
+      {
+        "type": "fill",
+        "selector": "#search",
+        "value": "Alpha"
+      },
+      {
+        "type": "click",
+        "selector": "button",
+        "wait_selector": "main"
+      }
+    ],
+    "expected_title": "Fixture page two",
+    "allowed_query_keys": [
+      "case"
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:8765/browser.html?case=pagination",
+    "name": "Owned browser pagination",
+    "mode": "browser",
+    "automation_allowed": true,
+    "permission_basis": "Repository-owned loopback fixture",
+    "actions": [
+      {
+        "type": "click",
+        "selector": "#next",
+        "wait_selector": "main"
+      }
+    ],
+    "expected_title": "Fixture page two",
+    "allowed_query_keys": [
+      "case"
+    ]
+  }
+]

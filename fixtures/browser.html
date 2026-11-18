@@ -1,0 +1,6 @@
+<!doctype html><html><head><title>Browser acceptance fixture</title></head>
+<body><h1>Browser fixture</h1><main id="content">Loading</main><span id="value">42</span>
+<form action="page2.html"><input id="search" name="q"><button type="submit">Search</button></form>
+<a id="next" href="page2.html">Next</a><script>
+setTimeout(() => { const m=document.querySelector('#content'); m.textContent='Dynamic Alpha content'; m.className='loaded'; }, 250);
+</script></body></html>
